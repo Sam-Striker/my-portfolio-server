@@ -1,6 +1,4 @@
 {
-  
-
   "scripts": {
     "start": "babel-node src/index.js",
     "dev": "nodemon --exec babel-node src",

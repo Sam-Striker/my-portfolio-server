@@ -9,6 +9,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/", routes);
 
-app.listen(4000, () => {
-  console.log("Server running at port 4000");
+app.listen(5000, () => {
+  console.log("Server running at port 5000");
 });
