@@ -17,6 +17,9 @@ const blogSchema = new mongoose.Schema({
     required: [true, "Please add a description"],
   },
 
+  imageUrl: { type: String },
+  imageId: { type: String },
+
   createdAt: { type: Date, default: Date.now },
 });
 
