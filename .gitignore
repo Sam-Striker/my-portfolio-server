@@ -8,6 +8,9 @@ bin-release/
 .settings/
 node_modules
 .env
+tmp
+coverage
+.nyc_output
 # Executables
 *.swf
 *.air
