@@ -5,9 +5,9 @@ bin-release/
 [Bb]in/
 
 # Other files and folders
+.env
 .settings/
 node_modules
-.env
 tmp
 coverage
 .nyc_output
@@ -16,7 +16,6 @@ coverage
 *.air
 *.ipa
 *.apk
-
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.

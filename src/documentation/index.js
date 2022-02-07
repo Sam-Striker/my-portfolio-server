@@ -20,7 +20,7 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:5001",
+        url: "http://localhost:4000",
       },
     ],
     produces: ["application/json"],
@@ -37,4 +37,3 @@ docRouter.use(
 );
 
 export default docRouter;
-

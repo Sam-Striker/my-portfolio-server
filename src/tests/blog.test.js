@@ -1,8 +1,11 @@
 import path from "path";
+import "dotenv/config";
+import jwt from "jsonwebtoken";
 import chai, { expect, should } from "chai";
 import chaiHttp from "chai-http";
 import mocha from "mocha";
 import Post from "../modal/blogModal";
+import Comment from "../modal/commentModal";
 import server from "../index";
 import mockdata from "./mockdata";
 
@@ -11,6 +14,10 @@ const { it, describe, beforeEach, afterEach } = mocha;
 chai.should();
 
 chai.use(chaiHttp);
+
+const { JWT_SECRET } = process.env;
+
+const token2 = jwt.sign(mockdata.loginUser, JWT_SECRET);
 
 const testPost = {
   Author: "issa",
@@ -31,6 +38,7 @@ describe("Api Endpoints", () => {
     const res = await chai
       .request(server)
       .post("/api/v1/blog/create")
+      .set("auth", `Bearer ${token2}`)
       .field("Author", testPost.Author)
       .field("Title", testPost.Title)
       .field("Content", testPost.Content)
@@ -42,6 +50,7 @@ describe("Api Endpoints", () => {
     const res = await chai
       .request(server)
       .post("/api/v1/blog/create")
+      .set("auth", `Bearer ${token2}`)
       .field("Author", testPost.Author)
       .field("Titlle", testPost.Title)
       .field("Content", testPost.Content)
@@ -53,6 +62,7 @@ describe("Api Endpoints", () => {
     let res = await chai
       .request(server)
       .post("/api/v1/blog/create")
+      .set("auth", `Bearer ${token2}`)
       .field("Author", testPost.Author)
       .field("Title", testPost.Title)
       .field("Content", testPost.Content)
@@ -61,6 +71,7 @@ describe("Api Endpoints", () => {
     res = await chai
       .request(server)
       .post("/api/v1/blog/create")
+      .set("auth", `Bearer ${token2}`)
       .field("Author", testPost.Author)
       .field("Title", testPost.Title)
       .field("Content", testPost.Content)
@@ -78,7 +89,9 @@ describe("Api Endpoints", () => {
     const post = await Post.create(testPost);
     await post.save();
 
-    const res = await chai.request(server).get(`/api/v1/blog/getPost/${post.id}`);
+    const res = await chai
+      .request(server)
+      .get(`/api/v1/blog/getPost/${post.id}`);
   });
 
   it("should not get any post", async () => {
@@ -87,8 +100,7 @@ describe("Api Endpoints", () => {
     res.should.have.status(404);
   });
 
-
-  it("should delete a post", async () => {
+  it("should not create a comment", async () => {
     const post = await Post.create(testPost);
     await post.save();
 
@@ -102,11 +114,78 @@ describe("Api Endpoints", () => {
       .post("/user/login")
       .send(mockdata.loginUser);
 
+    const mockComment = {
+      message: "wow nice post",
+    };
+
+    const comment = await Comment.create(mockComment);
+    await comment.save();
+
+    const res = await chai
+      .request(server)
+      .post(`/api/v1/blog/comment/${post._id}`)
+      .send(mockComment);
+    res.should.have.status(403);
+  });
+
+  it("should create a comment", async () => {
+    const post = await Post.create(testPost);
+    await post.save();
+    const mockComment = {
+      message: "wow nice post",
+    };
+
+    const comment = await Comment.create(mockComment);
+    await comment.save();
+
+    const res = await chai
+      .request(server)
+      .post(`/api/v1/blog/comment/${post._id}`)
+      .send(mockComment)
+      .set("auth", `Bearer ${token2}`);
+
+    res.should.have.status(201);
+  });
+
+  it("should have invalid token", async () => {
+    const post = await Post.create(testPost);
+    await post.save();
+    const mockComment = {
+      message: "wow nice post",
+    };
+
+    const comment = await Comment.create(mockComment);
+    await comment.save();
+
+    const res = await chai
+      .request(server)
+      .post(`/api/v1/blog/comment/${post._id}`)
+      .send(mockComment)
+      .set("auth", `Bearer ${token2}ssd`);
+
+    res.should.have.status(403);
+  });
+
+  it("should update a blog post", async () => {
+    const post = await Post.create(testPost);
+    await post.save();
+
+    const res = await chai
+      .request(server)
+      .patch(`/api/v1/blog/update/${post._id}`)
+      .set("auth", `Bearer ${token2}`)
+      .send(testPost.Content);
+    expect(res.status).to.be.equal(200);
+  });
+
+  it("should delete a post", async () => {
+    const post = await Post.create(testPost);
+    await post.save();
 
     const res = await chai
       .request(server)
       .delete(`/api/v1/blog/delete/${post._id}`)
-      .set("auth", `'Bearer' ${login.token}`);
+      .set("auth", `Bearer ${token2}`);
   });
 
   it("should not delete a post", async () => {

@@ -26,7 +26,6 @@ describe("Testing user", () => {
       .post("/api/v1/user/register")
       .send(mockdata.signUpUser);
     res.should.have.status(201);
-    res.body.should.have.property("token");
   });
 
   it("should login user", async () => {
