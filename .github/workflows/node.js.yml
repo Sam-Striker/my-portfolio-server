@@ -30,11 +30,13 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm run cover
+      run: npm run coverage
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.TOKEN}}
+          github-token: ${{ secrets.TOKEN }}
+          path-to-lcov: ./test-reports/coverage/lcov.info
+          parallel: true
       env:
         CI: true
