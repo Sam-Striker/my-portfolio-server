@@ -24,10 +24,7 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
 
-    - name: npm install, make cover
-      run: |
-        npm install
-        make cover
+    - name: npm install
 
     - run: npm test
     - run: npm run cover
