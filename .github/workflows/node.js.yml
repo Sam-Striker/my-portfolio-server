@@ -23,15 +23,18 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
+        mongodb-replica-set: test-rs
+        mongodb-port: 42069
 
-    - name: npm install
+    - name: Install dependencies
+      run: npm install
 
-    - run: npm test
-    - run: npm run cover
+    - name: Run tests
+      run: npm run cover
+
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
-
