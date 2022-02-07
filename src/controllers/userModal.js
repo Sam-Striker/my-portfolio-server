@@ -60,8 +60,10 @@ class UserController {
         email: user.email,
       });
 
+      const userr = {id: user._id, name: user.name, email: user.email, v: user.__v, createdAt: user.createdAt,  }
+
       return successMessage(res, 200, `successfully logged in`, {
-        user,
+        userr,
         token,
       });
     } catch (error) {
