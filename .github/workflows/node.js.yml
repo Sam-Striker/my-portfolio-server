@@ -24,9 +24,17 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
 
-    - run: npm install
+    - name: npm install, make test-coverage
+      run: |
+        npm install
+        make test-coverage
 
     - run: npm test
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         CI: true
 
