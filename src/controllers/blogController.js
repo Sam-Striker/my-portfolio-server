@@ -1,4 +1,6 @@
+import uploader from "../config/cloudinary";
 import PostModal from "../modal/blogModal";
+import Comment from "../modal/commentModal";
 
 class Blog {
   static async createBlog(req, res) {
@@ -78,6 +80,24 @@ class Blog {
         .status(400)
         .json({ success: false, message: `${error.message}` });
     }
+  }
+
+  static async comment(req, res, next) {
+    const { message } = req.body;
+    const comment = await Comment.create({
+      message,
+    });
+
+    const post = await PostModal.findById(req.params.id);
+    post.comments.push(comment.id);
+    post.commentCounts += 1;
+    await post.save();
+
+    return res.status(201).json({
+      success: true,
+      msg: "comment successfully created",
+      data: post,
+    });
   }
 }
 

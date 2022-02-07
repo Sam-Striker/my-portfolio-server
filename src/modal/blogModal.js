@@ -17,9 +17,17 @@ const blogSchema = new mongoose.Schema({
     required: [true, "Please add a description"],
   },
 
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+
   imageUrl: { type: String },
   imageId: { type: String },
 
+  commentCounts: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now },
 });
 

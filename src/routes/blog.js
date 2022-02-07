@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { checkAuth } from "../middleware/checkAuth";
 import blog from "../controllers/blogController";
-
+import Authorisation from "../middleware/checkAuth";
 
 /**
  * @swagger
@@ -12,6 +11,10 @@ import blog from "../controllers/blogController";
  *     summary: creating a blog
  *     consumes:
  *       - application/json
+ *     parameters:
+ *       - name: auth
+ *         in: header
+ *         required: true
  *     requestBody:
  *        required: true
  *        content:
@@ -81,6 +84,41 @@ import blog from "../controllers/blogController";
  *             description: server error.
  * */
 
+/**
+ * @swagger
+ * /api/v1/blog/comment/{id}:
+ *   post:
+ *     tags:
+ *       - Blogs
+ *     name: comment
+ *     summary: add a comment to a blog
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: auth
+ *         in: header
+ *         required: true
+ *       - name: id
+ *         in: path
+ *         required: true
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *                name:
+ *                 type: string
+ *                message:
+ *                 type: string
+ *     responses:
+ *       201:
+ *             description: Comment successfully added.
+ *       400:
+ *             description: Bad request.
+ *       500:
+ *             description: server error.
+ * */
 
 /**
  * @swagger
@@ -141,15 +179,14 @@ import blog from "../controllers/blogController";
  *             description: unauthorized
  * */
 
-
 const router = Router();
 
-router.post("/blog/create", blog.createBlog);
+router.post("/blog/create", Authorisation.admin, blog.createBlog);
 router.get("/blog/getAll", blog.readingBlogs);
 router.get("/blog/getPost/:id", blog.readingSingleBlog);
-router.delete("/blog/delete/:id", checkAuth, blog.deletingBlog);
-router.patch("/blog/update/:id", checkAuth, blog.updatingBlog);
-
-
+router.delete("/blog/delete/:id", Authorisation.admin, blog.deletingBlog);
+router.patch("/blog/update/:id", Authorisation.admin, blog.updatingBlog);
+router.patch("/blog/update/:id", Authorisation.admin, blog.updatingBlog);
+router.post("/blog/comment/:id", Authorisation.user, blog.comment);
 
 export default router;
