@@ -7,8 +7,8 @@
 ## Technologies used
 
 - Node js (express)
-  - bcrypt
-  - joi and jwt
+  - joi 
+  - jwt
 - Mongo Db
 
   - mongoose as ORM
