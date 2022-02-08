@@ -6,26 +6,15 @@ class UserController {
   static async userRegister(req, res, next) {
     try {
       const { email } = req.body;
-      if (!req.body.email || !req.body.password || !req.body.name) {
-        return errorMessage(
-          res,
-          400,
-          "please provide name, email and password"
-        );
-      }
-
       const existEmail = await userModal.findOne({ email });
       if (existEmail) {
         return errorMessage(res, 400, "user already registered");
       }
-
       const password = await encryptPassword(req.body.password);
-
       const user = await userModal.create({
         ...req.body,
         password,
       });
-
       return successMessage(res, 201, `successfully created account`, user);
     } catch (error) {
       return errorMessage(
@@ -50,11 +39,6 @@ class UserController {
       }
 
       const pass = await decryptPassword(req.body.password, user.password);
-
-      if (!pass) {
-        return errorMessage(res, 401, "Invalid Email or Passwor");
-      }
-
       const token = signToken({
         id: user._id,
         email: user.email,
