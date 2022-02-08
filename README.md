@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/mansurissa/My-brand-server.svg?branch=develop)](https://travis-ci.org/mansurissa/My-brand-server) [![Maintainability](https://api.codeclimate.com/v1/badges/e8c9476f60f3e9d4c240/maintainability)](https://codeclimate.com/github/mansurissa/My-brand-server/maintainability) [![Coverage Status](https://coveralls.io/repos/github/mansurissa/My-brand-server/badge.svg?branch=develop)](https://coveralls.io/github/mansurissa/My-brand-server?branch=develop)
-
 
 
 # My Portfolio Server
