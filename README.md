@@ -1,4 +1,5 @@
-
+![GitHub Repo stars](https://img.shields.io/github/stars/Sam-Striker/my-portfolio-server?style=flat-square)
+![GitHub followers](https://img.shields.io/github/followers/Sam-Striker?style=social)
 
 # My Portfolio Server
 
