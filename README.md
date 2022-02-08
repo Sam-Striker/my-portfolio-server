@@ -30,4 +30,4 @@ To test this do the following:
 
 ---
 
-Visit it's front end [here](samuel-mupagasi.netlify.app)
+Visit it's front end [here](http://samuel-mupagasi.netlify.app)
