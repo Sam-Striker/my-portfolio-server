@@ -1,3 +1,4 @@
+![CI/CD](https://github.com/Sam-Striker/my-portfolio-server.git/workflows/Node.js%20CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/maintainability)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/Sam-Striker/my-portfolio-server/badge.svg)](https://coveralls.io/github/Sam-Striker/my-portfolio-server)
 # My Portfolio Server
