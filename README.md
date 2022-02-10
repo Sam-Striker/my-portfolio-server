@@ -1,5 +1,4 @@
-![GitHub Repo stars](https://img.shields.io/github/stars/Sam-Striker/my-portfolio-server?style=flat-square)
-![GitHub followers](https://img.shields.io/github/followers/Sam-Striker?style=social)
+[![Maintainability](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/maintainability)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/maintainability)
 
 # My Portfolio Server
 
