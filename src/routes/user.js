@@ -35,6 +35,22 @@ import UserController from "../controllers/userModal";
 
 /**
  * @swagger
+ * /api/v1/user/getAll:
+ *   get:
+ *     tags:
+ *       - Users
+ *     name: Users
+ *     summary: Retrieve all users
+ *     consumes:
+ *        - application/json
+ *     responses:
+ *       200:
+ *             description: Users successfully Retrieved.
+ * */
+
+
+/**
+ * @swagger
  * /api/v1/user/login:
  *   post:
  *     tags:
@@ -67,6 +83,7 @@ import UserController from "../controllers/userModal";
 const router = Router();
 
 router.post("/user/register", UserController.userRegister);
+router.get("/user/getAll", UserController.fetchingUsers);
 router.post("/user/login", UserController.userLogin);
 
 export default router;

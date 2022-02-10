@@ -19,7 +19,7 @@ My personal portfolio website
 - **POST /api/v1/blog/create:** Create a Blog post
 - **GET /api/v1/blog/getPost/:blogID:** Fetch a single Blog post
 - **GET /api/v1/blog/getAll:** Fetch all blogs
-- **POST /api/v1/blog/comment/:blogdID:** Update a single Post
+- **POST /api/v1/blog/comment/:blogdID:** Create a comment on a single Post
 - **PATCH /api/v1/blog/update/:blogdID:** Update a single Post
 - **DELETE /api/v1/blog/delete/:blogdID:** Delete a post
 
@@ -69,7 +69,7 @@ npm run dev
 
 # More Tools
 
-- Continuous integration: **[Travis-Ci](travis-ci.org)**
+- Continuous integration: **[Github Actions]**
 - ES6 Transpiler: **[Babel](babeljs.io)**
 - Test coverage: **[nyc](https://www.npmjs.com/package/nyc)**
 - Maintainability: **[Code climate](https://codeclimate.com)**

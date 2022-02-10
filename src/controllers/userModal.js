@@ -15,13 +15,34 @@ class UserController {
         ...req.body,
         password,
       });
-      return successMessage(res, 201, `successfully created account`, user);
+
+      const userr = {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        v: user.__v,
+        createdAt: user.createdAt,
+      };
+
+      return successMessage(res, 201, `successfully created account`,  userr);
     } catch (error) {
       return errorMessage(
         res,
         400,
         `they was an error while creating an account ${error.message}`
       );
+    }
+  }
+
+  static async fetchingUsers(req, res) {
+    try {
+      const users = await userModal.find();
+
+      return res.status(200).json({ success: true, data: users });
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ success: false, message: `${error.message}` });
     }
   }
 
@@ -44,7 +65,13 @@ class UserController {
         email: user.email,
       });
 
-      const userr = {id: user._id, name: user.name, email: user.email, v: user.__v, createdAt: user.createdAt,  }
+      const userr = {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        v: user.__v,
+        createdAt: user.createdAt,
+      };
 
       return successMessage(res, 200, `successfully logged in`, {
         userr,
