@@ -23,22 +23,9 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-replica-set: test-rs
-        mongodb-port: 42069
 
-    - name: Install dependencies
-      run: npm install
+    - run: npm install
 
-    - name: Run CI
-      run: npm ci
-    - name: Test
-      run: npm run cover
-
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-          github-token: ${{ secrets.TOKEN }}
-          path-to-lcov: ./test-reports/coverage/lcov.info
-          parallel: true
+    - run: npm test
       env:
         CI: true
