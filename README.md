@@ -1,4 +1,4 @@
- [![Maintainability](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/maintainability)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/maintainability)
+[![Build](https://github.com/Sam-Striker/my-portfolio-server/actions/workflows/main.yml/badge.svg)](https://github.com/Sam-Striker/my-portfolio-server/actions/workflows/main.yml)  [![Maintainability](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/maintainability)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/Sam-Striker/my-portfolio-server/badge.svg)](https://coveralls.io/github/Sam-Striker/my-portfolio-server)
 # My Portfolio Server
 
