@@ -24,13 +24,14 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
 
     - run: npm install
-    - run: npm ci
+    - run: npm run build
 
     - run: npm run test
     - name: Code Climate Test Reporter
       uses: aktions/codeclimate-test-reporter@v1
       with:
         codeclimate-test-reporter-id: 586ac4dad61e91153c591fc80b5cc1639e01ab5241c579aaff866f650b385f01
+        command: after-build
       env:
         CI: true
         PASS: ${{ secrets.PASS }}
