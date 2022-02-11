@@ -15,15 +15,12 @@ class UserController {
         ...req.body,
         password,
       });
-
       const userr = {
         id: user._id,
         name: user.name,
         email: user.email,
-        v: user.__v,
         createdAt: user.createdAt,
       };
-
       return successMessage(res, 201, `successfully created account`,  userr);
     } catch (error) {
       return errorMessage(
@@ -69,10 +66,8 @@ class UserController {
         id: user._id,
         name: user.name,
         email: user.email,
-        v: user.__v,
         createdAt: user.createdAt,
       };
-
       return successMessage(res, 200, `successfully logged in`, {
         userr,
         token,
