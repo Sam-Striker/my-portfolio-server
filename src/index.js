@@ -15,11 +15,11 @@ app.use(fileupload({ useTempFiles: true }));
 app.use("/", routes);
 
 
-
+const port = procces.env.PORT || 4000
 app.listen(
   process.env.PORT,
   console.log(
-    `server running in ${process.env.NODE_ENV} at ${process.env.PORT}`
+    `server running at ${port}`
   )
 );
 
