@@ -5,7 +5,7 @@ const { MONGO_URI, NODE_ENV, MONGO_URI_TEST } = process.env;
 
 const connectDB = async () => {
   const conn = await mongoose.connect(
-    MONGO_URI || "mongodb://localhost/striker-brand",
+    NODE_ENV === "test" ? MONGO_URI_TEST : MONGO_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
