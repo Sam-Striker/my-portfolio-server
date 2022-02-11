@@ -47,11 +47,7 @@ class UserController {
     try {
       const { email } = req.body;
       const user = await userModal.findOne({ email }).select("+password");
-
-      if (!email) {
-        return errorMessage(res, 404, "Please provide email");
-      }
-
+      
       if (!user) {
         return errorMessage(res, 401, `Invalid Email or Password`);
       }
