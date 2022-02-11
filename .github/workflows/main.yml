@@ -28,6 +28,7 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
 
     - run: npm install
+    - run: npm ci
 
     - run: npm run test
     - name: Code Climate Test Reporter
