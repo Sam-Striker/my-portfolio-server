@@ -36,3 +36,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run cover
+
+    - name: Code Climate Test Reporter
+      uses: aktions/codeclimate-test-reporter@v1
+      with:
+        codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
+        coverageCommand: npm run cover
+
