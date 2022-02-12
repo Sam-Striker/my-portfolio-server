@@ -38,8 +38,9 @@ jobs:
     - run: npm run cover
 
     - name: Code Climate Test Reporter
-      uses: aktions/codeclimate-test-reporter@v1
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: 945dfb58a832d233a3caeb84e3e6d3be212e8c7abcb48117fce63b9adcb43647
       with:
-        codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
-        coverageCommand: npm run cover
+        coverageCommand: npm run coverage
 
