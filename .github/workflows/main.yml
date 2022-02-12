@@ -31,7 +31,29 @@ jobs:
       uses: paambaati/codeclimate-action@v3.0.0
       with:
         codeclimate-test-reporter-id: 586ac4dad61e91153c591fc80b5cc1639e01ab5241c579aaff866f650b385f01
-        command: npm run cover
+        command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+        
+#     - run:
+#       name: Setup Code Climate test-reporter
+#       with:
+#       codeclimate-test-reporter-id: 586ac4dad61e91153c591fc80b5cc1639e01ab5241c579aaff866f650b385f01
+#       command: |
+#             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#             chmod +x ./cc-test-reporter
+#             ./cc-test-reporter before-build
+#       when: always
+#     - run:
+#       name: Send coverage report to Code Climate
+#       command: |
+#             ./cc-test-reporter after-build -t lcov
+#       when: always
+
+#       - store_artifacts:
+#           path: ./coverage/lcov.info
+#           prefix: tests
       env:
         CI: true
         PASS: ${{ secrets.PASS }}
