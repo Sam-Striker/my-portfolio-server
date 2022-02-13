@@ -21,7 +21,7 @@ const options = {
     servers: [
       {
        
-         url: "http://localhost:4000/"
+         url: "http://striker-server.herokuapp.com"
       },
       {
         url: "https://striker-server.herokuapp.com",
