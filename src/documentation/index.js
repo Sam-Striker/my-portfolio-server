@@ -22,10 +22,7 @@ const options = {
       {
        
          url: "http://striker-server.herokuapp.com"
-      },
-      {
-        url: "https://striker-server.herokuapp.com",
-      },
+      }
     ],
     produces: ["application/json"],
   },
