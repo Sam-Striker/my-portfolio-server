@@ -22,24 +22,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - run: npm install
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.7.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
+    - run: npm run build
+    - run: npm ci
+    - run: npm run cover
     - name: Code Climate Test Reporter
-    - uses: aktions/codeclimate-test-reporter@v1
+      uses: aktions/codeclimate-test-reporter@v1
       with:
         codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
         command: after-build
-
-    - run: npm ci
-    - run: npm run cover
     
     env:
       CI: true
