@@ -10,15 +10,15 @@ env:
   CLOUDINARY_API_KEY: ${{secrets.CLOUDINARY_API_KEY}}
   CLOUDINARY_API_SECRET: ${{secrets.CLOUDINARY_API_SECRET}}
   NODE_ENV: ${{secrets.NODE_ENV}}
-    
+
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ ft-testing-github-actions ]
   pull_request:
-    branches: [ master ]
+    branches: [ ft-testing-github-actions ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -41,5 +41,6 @@ jobs:
         uses: aktions/codeclimate-test-reporter@v1
         with:
           codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
+
           command: after-build
     
