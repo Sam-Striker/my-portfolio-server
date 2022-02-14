@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/Sam-Striker/my-portfolio-server/actions/workflows/node.js.yml/badge.svg)](https://github.com/Sam-Striker/my-portfolio-server/actions/workflows/node.js.yml) [![Maintainability](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/maintainability)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/Sam-Striker/my-portfolio-server/badge.svg)](https://coveralls.io/github/Sam-Striker/my-portfolio-server)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/275d7597be91e8b41f12/test_coverage)](https://codeclimate.com/github/Sam-Striker/my-portfolio-server/test_coverage)
 
 My personal portfolio website
 
