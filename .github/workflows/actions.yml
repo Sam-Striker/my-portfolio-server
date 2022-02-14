@@ -1,0 +1,46 @@
+name: CI
+env:
+  CI: true
+  PORT: ${{secrets.PORT}}
+  MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
+  JWT_SECRET: ${{secrets.JWT_SECRET}}
+  JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
+  JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
+  CLOUDINARY_NAME: ${{secrets.CLOUDINARY_NAME}}
+  CLOUDINARY_API_KEY: ${{secrets.CLOUDINARY_API_KEY}}
+  CLOUDINARY_API_SECRET: ${{secrets.CLOUDINARY_API_SECRET}}
+  NODE_ENV: ${{secrets.NODE_ENV}}
+
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
+      - run: npm run test
+      - name: Code Climate Test Reporter
+        uses: aktions/codeclimate-test-reporter@v1
+        with:
+          codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
+
+          command: after-build
+    
