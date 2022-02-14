@@ -4,7 +4,7 @@
   "description": "Api for my personal website and my blog",
   "main": "index.js",
   "scripts": {
-    "test": " mocha  --timeout 10000000 ./src/tests/**.test.js --coverage --require @babel/register --exit",
+    "test": " nyc --reporter=text --reporter=lcov mocha  --timeout 10000000 ./src/tests/**.test.js --coverage --require @babel/register --exit",
     "start": "NODE_ENV=production babel-node src",
     "build": "babel ./src --out-dir build",
     "dev": "npx nodemon --exec babel-node src",
