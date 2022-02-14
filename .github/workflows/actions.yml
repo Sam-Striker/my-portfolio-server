@@ -1,45 +1,48 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Build
-
+name: CI
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
+  workflow_dispatch:
+
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        mongodb-version: ['4.2', '4.4']
+        os: [ ubuntu-latest ]
+        node-version: [ 14.x ]
 
     steps:
     - uses: actions/checkout@v2
-    - run: npm install
-    - run: npm run build
-    - run: npm ci
-    - run: npm run cover
-    - name: Code Climate Test Reporter
-      uses: aktions/codeclimate-test-reporter@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
-        command: after-build
-    
-    env:
-      CI: true
-      PORT: ${{secrets.PORT}}
-      MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
-      JWT_SECRET: ${{secrets.JWT_SECRET}}
-      JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
-      JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
-      CLOUDINARY_NAME: ${{secrets.CLOUDINARY_NAME}}
-      CLOUDINARY_API_KEY: ${{secrets.CLOUDINARY_API_KEY}}
-      CLOUDINARY_API_SECRET: ${{secrets.CLOUDINARY_API_SECRET}}
-      NODE_ENV: ${{secrets.NODE_ENV}}
+        node-version: ${{ matrix.node-version }}
+
+    - name: Test & publish code coverage
+      uses: amancevice/setup-code-climate@v0
+      with:
+        cc_test_reporter_id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
+    - run: cc-test-reporter before-build
+    - run: npm install
+    - run: npm run cover
+      env:
+        CI: true
+        PORT: ${{secrets.PORT}}
+        MONGO_URI_TEST: ${{secrets.MONGO_URI_TEST}}
+        JWT_SECRET: ${{secrets.JWT_SECRET}}
+        JWT_EXPIRE: ${{secrets.JWT_EXPIRE}}
+        JWT_COOKIE_EXPIRE: ${{secrets.JWT_COOKIE_EXPIRE}}
+        CLOUDINARY_NAME: ${{secrets.CLOUDINARY_NAME}}
+        CLOUDINARY_API_KEY: ${{secrets.CLOUDINARY_API_KEY}}
+        CLOUDINARY_API_SECRET: ${{secrets.CLOUDINARY_API_SECRET}}
+        NODE_ENV: ${{secrets.NODE_ENV}}
+    - run: cc-test-reporter after-build
