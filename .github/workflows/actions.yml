@@ -40,6 +40,6 @@ jobs:
       - name: Code Climate Test Reporter
         uses: aktions/codeclimate-test-reporter@v1
         with:
-          codeclimate-test-reporter-id: 22051e07c57c969f74159166e072e506d1aa5df8dcc83e1f53834ac302720b6a
+          codeclimate-test-reporter-id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
           command: after-build
     
