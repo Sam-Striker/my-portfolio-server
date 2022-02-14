@@ -30,7 +30,7 @@ jobs:
     - name: Test & publish code coverage
       uses: amancevice/setup-code-climate@v0
       with:
-        cc_test_reporter_id: ${{ secrets.CC_TEST_REPORTER_ID }}
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     - run: cc-test-reporter before-build
     - run: npm install
     - run: npm run cover
@@ -45,4 +45,5 @@ jobs:
         CLOUDINARY_API_KEY: ${{secrets.CLOUDINARY_API_KEY}}
         CLOUDINARY_API_SECRET: ${{secrets.CLOUDINARY_API_SECRET}}
         NODE_ENV: ${{secrets.NODE_ENV}}
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     - run: cc-test-reporter after-build
