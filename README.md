@@ -12,6 +12,7 @@ My personal portfolio website
 ### User
 
 - **POST /api/v1/user/register:** Create an account
+- **POST /api/v1/user/getAll:** retrieve all user
 - **POST /api/v1/user/login:** Log into your account
 
 ### Blog
