@@ -30,7 +30,7 @@ jobs:
     - name: Test & publish code coverage
       uses: amancevice/setup-code-climate@v0
       with:
-        cc_test_reporter_id: 333a145454fa2eadbc23001a1eeb28c2d35d7a2e0602001d2420495ec0fc98ad
+        cc_test_reporter_id: ${{ secrets.CC_TEST_REPORTER_ID }}
     - run: cc-test-reporter before-build
     - run: npm install
     - run: npm run cover
