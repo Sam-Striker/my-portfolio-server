@@ -1,5 +1,6 @@
 import { Router} from "express";
 import UserController from "../controllers/userModal";
+import cors from "cors";
 
 
 /**
@@ -82,8 +83,8 @@ import UserController from "../controllers/userModal";
 
 const router = Router();
 
-router.post("/user/register", UserController.userRegister);
-router.get("/user/getAll", UserController.fetchingUsers);
-router.post("/user/login", UserController.userLogin);
+router.post("/user/register",cors(corsOptions), UserController.userRegister);
+router.get("/user/getAll",cors(corsOptions), UserController.fetchingUsers);
+router.post("/user/login",cors(corsOptions), UserController.userLogin);
 
 export default router;

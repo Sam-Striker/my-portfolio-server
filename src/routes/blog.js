@@ -1,6 +1,7 @@
 import { Router } from "express";
 import blog from "../controllers/blogController";
 import Authorisation from "../middleware/checkAuth";
+import cors from "cors";
 
 /**
  * @swagger
@@ -181,12 +182,11 @@ import Authorisation from "../middleware/checkAuth";
 
 const router = Router();
 
-router.post("/blog/create", Authorisation.admin, blog.createBlog);
-router.get("/blog/getAll", blog.readingBlogs);
-router.get("/blog/getPost/:id", blog.readingSingleBlog);
-router.delete("/blog/delete/:id", Authorisation.admin, blog.deletingBlog);
-router.patch("/blog/update/:id", Authorisation.admin, blog.updatingBlog);
-router.patch("/blog/update/:id", Authorisation.admin, blog.updatingBlog);
-router.post("/blog/comment/:id", Authorisation.user, blog.comment);
-
+router.post("/blog/create",cors(corsOptions),Authorisation.admin,blog.createBlog);
+router.get("/blog/getAll",cors(corsOptions),blog.readingBlogs);
+router.get("/blog/getPost/:id",cors(corsOptions),blog.readingSingleBlog);
+router.delete("/blog/delete/:id",cors(corsOptions),Authorisation.admin, blog.deletingBlog);
+router.patch("/blog/update/:id",cors(corsOptions), Authorisation.admin,blog.updatingBlog);
+router.patch("/blog/update/:id",cors(corsOptions),Authorisation.admin, blog.updatingBlog);
+router.post("/blog/comment/:id",cors(corsOptions),Authorisation.user,blog.comment);
 export default router;
