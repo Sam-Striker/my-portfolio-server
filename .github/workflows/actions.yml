@@ -1,4 +1,4 @@
-name: CI
+name: Build
 env:
   CI: true
   PORT: ${{secrets.PORT}}
