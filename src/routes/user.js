@@ -1,7 +1,8 @@
 import { Router} from "express";
 import UserController from "../controllers/userModal";
 import cors from "cors";
-
+const corsOptions = { origin: '*', optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+} 
 
 /**
  * @swagger
